@@ -60,7 +60,7 @@ export default function Register() {
                 />
               </span>
               <input 
-                type="password"
+                type="text"
                 placeholder="NOME"
               />
             </div>
