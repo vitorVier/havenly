@@ -134,7 +134,7 @@
 
 .login-btn {
     width: 100%;
-    min-width: 350px;
+    min-width: 400px;
     max-width: 400px;
     height: 62px;
     /* padding: 18px 9rem; */
@@ -149,12 +149,12 @@
     transition: backdrop-filter 0.2s;
 }
 
-.login-btn:hover {
+.login-btn:hover, .google-btn:hover {
     filter: brightness(1.1);
 }
 
 .google-btn {
-    width: 64%;
+    width: 100%;
     min-width: 350px;
     max-width: 400px;
     height: 62px;
@@ -167,11 +167,6 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s;
-}
-
-.google-btn:hover {
-    background: var(--primary-color);
-    filter: brightness(1.1);
 }
 
 .google-icon {
