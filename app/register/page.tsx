@@ -62,6 +62,7 @@ export default function Register() {
               <input 
                 type="text"
                 placeholder="NOME"
+                required
               />
             </div>
 
@@ -78,6 +79,7 @@ export default function Register() {
               <input 
                 type="email"
                 placeholder="E-MAIL"
+                required
               />
             </div>
 
@@ -94,6 +96,7 @@ export default function Register() {
               <input 
                 type="password"
                 placeholder="SENHA"
+                required
               />
             </div>
           </div>

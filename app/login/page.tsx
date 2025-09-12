@@ -44,6 +44,7 @@ export default function Login() {
               <input 
                 type="email"
                 placeholder="E-MAIL"
+                required
               />
             </div>
 
@@ -54,17 +55,18 @@ export default function Login() {
               <input 
                 type="password"
                 placeholder="SENHA"
+                required
               />
             </div>
           </div>
 
-          <Link href='/'>
+          <Link href='/' style={{ marginTop: 12 }}>
             <button className="login-btn" type="submit">
               ENTRAR
             </button>
           </Link>
 
-          <button className="google-btn" type="button">
+          <button className="login-btn" type="button" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Image
               alt="Logar com Google"
               src={gIcon}
