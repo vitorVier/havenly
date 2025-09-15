@@ -1,12 +1,15 @@
+"use client";
 import Link from 'next/link';
 import Image from 'next/image';
 import './header.css';
+import { useState } from 'react';
 
-import logoImg from '../../../public/images/header/logoImg.png';
-import logoIcon from '../../../public/images/header/logoIcon.png';
-import br1 from '../../../public/images/header/br1.png';
+import logoImg from '../../../public/images/logo/logoImg.png';
+import logoIcon from '../../../public/images/logo/logoIcon.png';
 
 export function Header() {
+    const [navOpen, setNavOpen] = useState(false);
+
     return (
         <header>
             <div className="header-content">
@@ -31,28 +34,51 @@ export function Header() {
                     </select>
                 </div>
 
-                <nav>
+                <button
+                    className="hamburger"
+                    aria-label="Abrir menu"
+                    onClick={() => setNavOpen(!navOpen)}
+                >
+                    <span />
+                    <span />
+                    <span />
+                </button>
+
+                <nav className={navOpen ? "nav-mobile open" : "nav-mobile"}>
                     <select name="lang" id="lang">
                         <option value="0">BRL</option>
                         <option value="1">ENG</option>
                         <option value="2">SPN</option>
-                    </select>             
+                    </select>
                     
-                    <Link href="#">Minhas Reservas</Link>
+                    <Link href="/reservations">Minhas Reservas</Link>
                     <Link href="#">Minha Conta</Link>
                     <Link href="#">Suporte</Link>
-                    
                     <div className="buttons">
                         <Link href="#">
-                            <button>
-                                Entrar
-                            </button>
+                            <button>Entrar</button>
                         </Link>
-                        
                         <Link href="#">
-                            <button>
-                                Cadastrar    
-                            </button>                
+                            <button>Cadastrar</button>
+                        </Link>
+                    </div>
+                </nav>
+
+                <nav className="nav-desktop">
+                    <select name="lang" id="lang">
+                        <option value="0">BRL</option>
+                        <option value="1">ENG</option>
+                        <option value="2">SPN</option>
+                    </select>
+                    <Link href="/reservations">Minhas Reservas</Link>
+                    <Link href="#">Minha Conta</Link>
+                    <Link href="#">Suporte</Link>
+                    <div className="buttons">
+                        <Link href="#">
+                            <button>Entrar</button>
+                        </Link>
+                        <Link href="#">
+                            <button>Cadastrar</button>
                         </Link>
                     </div>
                 </nav>

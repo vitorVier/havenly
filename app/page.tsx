@@ -1,10 +1,10 @@
 import './page.css';
 import Image from 'next/image';
 
-import planeIcon from '../public/images/home/planeIcon.png';
-import calendarIcon from '../public/images/home/calendarIcon.png';
-import userIcon from '../public/images/home/userIcon.png';
-import vIcon from '../public/images/home/vIcon.png';
+import planeIcon from '../public/images/icons/planeIcon.png';
+import calendarIcon from '../public/images/icons/calendarIcon.png';
+import userIcon from '../public/images/icons/userIcon.png';
+import vIcon from '../public/images/icons/vIcon.png';
 import Link from 'next/link';
 
 export default function Home() {

@@ -1,11 +1,11 @@
 import './register.css';
 
 import Image from "next/image"
-import logo2 from '../../public/images/login/logo2.png';
-import gIcon from '../../public/images/login/googleIcon.png';
-import emailIcon from '../../public/images/login/emailIcon.png';
-import passIcon from '../../public/images/login/passIcon.png';
-import userIcon from '../../public/images/register/registerUserIcon.png';
+import logo2 from '../../public/images/logo/logo2.png';
+import gIcon from '../../public/images/icons/googleIcon.png';
+import emailIcon from '../../public/images/icons/emailIcon.png';
+import passIcon from '../../public/images/icons/passIcon.png';
+import userIcon from '../../public/images/icons/registerUserIcon.png';
 
 
 import Link from 'next/link';
