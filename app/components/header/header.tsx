@@ -52,8 +52,9 @@ export function Header() {
                     </select>
                     
                     <Link href="/reservations">Minhas Reservas</Link>
-                    <Link href="#">Minha Conta</Link>
-                    <Link href="#">Suporte</Link>
+                    <Link href="/support">Minha Conta</Link>
+                    <Link href="/support">Suporte</Link>
+
                     <div className="buttons">
                         <Link href="#">
                             <button>Entrar</button>
@@ -72,12 +73,12 @@ export function Header() {
                     </select>
                     <Link href="/reservations">Minhas Reservas</Link>
                     <Link href="#">Minha Conta</Link>
-                    <Link href="#">Suporte</Link>
+                    <Link href="/support">Suporte</Link>
                     <div className="buttons">
-                        <Link href="#">
+                        <Link href="/login">
                             <button>Entrar</button>
                         </Link>
-                        <Link href="#">
+                        <Link href="/register">
                             <button>Cadastrar</button>
                         </Link>
                     </div>
