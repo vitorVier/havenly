@@ -106,10 +106,21 @@
   cursor: pointer;
 }
 
-.field-value {
+.field-input {
   background: #E5E5E5;
   height: 48px;
   border-radius: 4px;
+  border: none;
+  padding: 0 16px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #222;
+  margin-top: 4px;
+}
+
+.field-input:focus {
+  outline: 2px solid #F75C4C;
+  background: #fff;
 }
 
 .profile-actions {
@@ -130,20 +141,22 @@
 }
 
 .switch-account {
-  background: #21B7B7;
-  color: #fff;
   border: 2px solid #21B7B7;
+  background: #fff;
+  color: #21B7B7;
+  transition: all 0.3s;
 }
 
 .switch-account:hover {
-  background: #fff;
-  color: #21B7B7;
+  background: #21B7B7;
+  color: #fff;
 }
 
 .logout {
   background: #fff;
   color: #F75C4C;
   border: 2px solid #F75C4C;
+  transition: all 0.3s;
 }
 
 .logout:hover {

@@ -46,7 +46,11 @@ export default function ProfilePage() {
                   <span className="field-edit"> - Alterar</span>
                 </label>
 
-                <div className="field-value"></div>
+                <input
+                  className="field-input"
+                  type="text"
+                  // placeholder="Digite seu nome"
+                />
               </div>
 
               <div className="profile-field">
@@ -55,7 +59,11 @@ export default function ProfilePage() {
                   <span className="field-edit"> - Alterar</span>
                 </label>
 
-                <div className="field-value"></div>
+                <input
+                  className="field-input"
+                  type="text"
+                  // placeholder="Digite seu sobrenome"
+                />
               </div>
             </div>
 
@@ -65,7 +73,12 @@ export default function ProfilePage() {
                   <span className="field-label">E-mail</span>
                   <span className="field-edit"> - Alterar</span>
                 </label>
-                <div className="field-value"></div>
+
+                <input
+                  className="field-input"
+                  type="email"
+                  // placeholder="Digite seu e-mail"
+                />
               </div>
 
               <div className="profile-field">
@@ -73,7 +86,12 @@ export default function ProfilePage() {
                   <span className="field-label">Senha</span>
                   <span className="field-edit"> - Alterar</span>
                 </label>
-                <div className="field-value"></div>
+
+                <input
+                  className="field-input"
+                  type="password"
+                  // placeholder="Digite sua senha"
+                />
               </div>
             </div>
           </div>
