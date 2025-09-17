@@ -22,9 +22,9 @@ export default function SupportPage() {
 
       <form className="support-search">
         <Image
-            src={magnifierIcon}
-            alt="Ícone de lupa"
-            className="magnifier-icon"
+          src={magnifierIcon}
+          alt="Ícone de lupa"
+          className="magnifier-icon"
         />
 
         <input type="text" placeholder="Como podemos ajudar?" />

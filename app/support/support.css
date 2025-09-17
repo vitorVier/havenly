@@ -49,7 +49,7 @@
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: all 0.2s, color 0.2s;
 }
 
 .support-search button:hover {
@@ -116,7 +116,10 @@
 }
 
 .arrow-icon {
+  object-fit: contain;
   margin-left: auto;
+  width: 22px;
+  height: 22px;
 }
 
 .support-footer {
@@ -150,4 +153,92 @@
   width: 140px;
   height: auto;
   pointer-events: none;
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+  .support-container {
+    max-width: 100%;
+    padding: 32px 12px 0 12px;
+  }
+  .support-title {
+    font-size: 2rem;
+  }
+  .support-subtitle {
+    font-size: 1.2rem;
+  }
+  .support-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .support-card {
+    font-size: 1rem;
+    padding: 14px 16px;
+  }
+  .tourist-icon {
+    width: 100px;
+    bottom: -60px;
+  }
+}
+
+@media (max-width: 600px) {
+  .support-container {
+    padding: 18px 6px 0 6px;
+  }
+  .support-title {
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+  }
+  .support-greeting {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  .support-search {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .support-search input {
+    font-size: 1rem;
+    padding: 10px 12px 10px 36px;
+  }
+  .magnifier-icon {
+    width: 18px;
+    height: 18px;
+    top: 12px;
+    left: 0px;
+  }
+  .support-search button {
+    width: 100%;
+    height: 40px;
+    font-size: 0.95rem;
+    padding: 0;
+  }
+  .support-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .support-card {
+    font-size: 0.95rem;
+    padding: 10px 10px;
+    gap: 10px;
+  }
+  .card-icon {
+    width: 22px;
+    height: 22px;
+  }
+  .arrow-icon {
+    width: 15px;
+    height: 15px;
+  }
+  .support-footer {
+    font-size: 0.95rem;
+    margin-top: 24px;
+  }
+  .tourist-icon {
+    width: 70px;
+    bottom: -30px;
+    right: 0;
+  }
 }
