@@ -1,0 +1,152 @@
+.profile-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 32px 0 32px;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.profile-tabs {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.tab {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #BDBDBD;
+  border-bottom: 4px solid transparent;
+  padding-bottom: 4px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.tab.active {
+  color: #F75C4C;
+  border-bottom: 4px solid #F75C4C;
+}
+
+.profile-content {
+  display: flex;
+  gap: 48px;
+}
+
+.profile-photo-section {
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.profile-photo-label {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 14px;
+}
+
+.profile-photo {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  background: #D8D8D8;
+}
+
+.eng-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 8px;
+  cursor: pointer;
+}
+
+.profile-info-section {
+  flex: 1;
+  margin-top: 16px;
+}
+
+.profile-info-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.profile-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.profile-field-row {
+  display: flex;
+  gap: 32px;
+}
+
+.profile-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field-label {
+  color: #BDBDBD;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.field-edit {
+  color: #F75C4C;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.field-value {
+  background: #E5E5E5;
+  height: 48px;
+  border-radius: 4px;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 18px;
+  margin-top: 32px;
+}
+
+.btn {
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 10px 24px;
+  border: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s, background 0.2s, color 0.2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.switch-account {
+  background: #21B7B7;
+  color: #fff;
+  border: 2px solid #21B7B7;
+}
+
+.switch-account:hover {
+  background: #fff;
+  color: #21B7B7;
+}
+
+.logout {
+  background: #fff;
+  color: #F75C4C;
+  border: 2px solid #F75C4C;
+}
+
+.logout:hover {
+  background: #F75C4C;
+  color: #fff;
+}
