@@ -1,5 +1,6 @@
 import './profile.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import userProfileIcon from '../../public/images/icons/userProfileIcon.png';
 import engIcon from '../../public/images/icons/engIcon.png';
@@ -8,8 +9,13 @@ export default function ProfilePage() {
   return (
     <main className="profile-container">
       <nav className="profile-tabs">
-        <span className="tab active">Meu Perfil</span>
-        <span className="tab">Segurança</span>
+        <Link href="/profile">
+          <span className="tab active">Segurança</span>
+        </Link>
+
+        <Link href="/security">
+          <span className="tab">Segurança</span>
+        </Link>
       </nav>
 
       <div className="profile-content">
@@ -42,8 +48,8 @@ export default function ProfilePage() {
             <div className="profile-field-row">
               <div className="profile-field">
                 <label>
-                  <span className="field-label">Nome</span>
-                  <span className="field-edit"> - Alterar</span>
+                  <span className="field-label">Nome - </span>
+                  <span className="field-edit">Alterar</span>
                 </label>
 
                 <input
@@ -55,8 +61,8 @@ export default function ProfilePage() {
 
               <div className="profile-field">
                 <label>
-                  <span className="field-label">Sobrenome</span>
-                  <span className="field-edit"> - Alterar</span>
+                  <span className="field-label">Sobrenome - </span>
+                  <span className="field-edit">Alterar</span>
                 </label>
 
                 <input
@@ -70,8 +76,8 @@ export default function ProfilePage() {
             <div className="profile-field-row">
               <div className="profile-field">
                 <label>
-                  <span className="field-label">E-mail</span>
-                  <span className="field-edit"> - Alterar</span>
+                  <span className="field-label">E-mail - </span>
+                  <span className="field-edit">Alterar</span>
                 </label>
 
                 <input
@@ -83,8 +89,8 @@ export default function ProfilePage() {
 
               <div className="profile-field">
                 <label>
-                  <span className="field-label">Senha</span>
-                  <span className="field-edit"> - Alterar</span>
+                  <span className="field-label">Senha - </span>
+                  <span className="field-edit">Alterar</span>
                 </label>
 
                 <input

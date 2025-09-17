@@ -59,6 +59,7 @@ export default function Register() {
                   objectFit='contain' 
                 />
               </span>
+
               <input 
                 type="text"
                 placeholder="NOME"
@@ -76,6 +77,7 @@ export default function Register() {
                   objectFit='contain'
                 />
               </span>
+              
               <input 
                 type="email"
                 placeholder="E-MAIL"
@@ -93,6 +95,7 @@ export default function Register() {
                   objectFit='contain' 
                 />
               </span>
+              
               <input 
                 type="password"
                 placeholder="SENHA"

@@ -41,6 +41,7 @@ export default function Login() {
               <span className="input-icon">
                 <Image src={emailIcon} alt="Email" width={35} height={27} objectFit='contain'/>
               </span>
+              
               <input 
                 type="email"
                 placeholder="E-MAIL"
@@ -52,6 +53,7 @@ export default function Login() {
               <span className="input-icon">
                 <Image src={passIcon} alt="Senha" width={35} height={35} objectFit='contain' />
               </span>
+
               <input 
                 type="password"
                 placeholder="SENHA"

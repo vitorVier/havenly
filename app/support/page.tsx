@@ -67,7 +67,7 @@ export default function SupportPage() {
           <Image
             src={cupomIcon}
             alt="Ícone de cupom"
-            className="Arrow Icon"
+            className="card-icon"
           />
           Cupons
           <Image
