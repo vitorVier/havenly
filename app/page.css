@@ -120,8 +120,6 @@ main {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    height: auto;
-    min-height: 100vh;
     background-position: top;
     padding-bottom: 32px;
   }
@@ -129,7 +127,6 @@ main {
   main {
     width: 100%;
     margin-left: 0;
-    height: auto;
     padding: 24px 0;
     display: flex;
     flex-direction: column;
@@ -192,22 +189,20 @@ main {
 
 @media (max-width: 700px) {
   .home-container {
-    padding: 0;
     background-size: cover;
-    background-position: center;
-  }
-
-  main {
-    width: 100vw;
-    padding: 0;
+    background-position: left right;
   }
 
   .inputs-home {
-    width: 98vw;
-    min-width: unset;
-    padding: 12px 2vw;
-    gap: 12px;
-    border-radius: 10px;
+    align-self: start;
+    margin-left: 15px;
+    width: 90%;
+    min-width: 260px;
+    height: auto;
+    flex-direction: column;
+    gap: 18px;
+    padding: 18px 8px;
+    background: transparent;
   }
 
   .input-group {
@@ -216,23 +211,29 @@ main {
 
   .input-group input {
     font-size: 0.95rem;
-    padding-left: 32px;
-    border-radius: 6px;
   }
 
   .slogan {
-    width: 98vw;
-    margin: 18px 0 0 10px;
-    gap: 10px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 10px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 25px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.445);
+    background: #FFF5D3;
   }
 
   .slogan h1 {
-    font-size: 1.2rem;
+    font-size: 2rem;
     line-height: 1.2;
   }
 
   .slogan ul {
-    gap: 10px;
+    align-items: center;
   }
 
   .slogan p {
@@ -241,7 +242,7 @@ main {
 
   .search {
     font-size: 1rem;
-    margin-top: 18px;
+    margin-top: 10px;
     border-radius: 6px;
   }
 }
