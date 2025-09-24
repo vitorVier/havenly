@@ -1,7 +1,7 @@
 // Configurações da API JSONBin.io
 const API_CONFIG = {
   binId: '68d3df3eae596e708ff9eb22',
-  secretKey: $2a$10$6caAdPB5uwJ.DoSHuhbNYetiW2QpxXeURI/QGy0w.RIVkSb6oYvyG
+  secretKey: '$2a$10$6caAdPB5uwJ.DoSHuhbNYetiW2QpxXeURI/QGy0w.RIVkSb6oYvyG'
 };
 
 class JsonBinAPI {
