@@ -63,6 +63,7 @@
 
 /* Filtros */
 .filters {
+  max-height: 300px;
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -98,6 +99,10 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.img-content {
+  max-height: 200px;
 }
 
 .hotel-card img {
@@ -144,10 +149,10 @@
 }
 
 .rating-decimal {
-    padding: 5px 9px;
-    border-radius: 15px;
-    color: #FFF;
-    background: var(--primary-color);
+  padding: 5px 9px;
+  border-radius: 15px;
+  color: #FFF;
+  background: var(--primary-color);
 }
 
 .reviews {
@@ -174,17 +179,17 @@
 }
 
 .btn-book, .btn-filter {
-    margin: 5px 0;
-    padding: 0.6rem;
-    border: none;
-    border-radius: 4px;
-    color: #FFF;
-    font-weight: 600;
-    background: var(--primary-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
+  margin: 5px 0;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 4px;
+  color: #FFF;
+  font-weight: 600;
+  background: var(--primary-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .btn-book:hover, .btn-filter:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }

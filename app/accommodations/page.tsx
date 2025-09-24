@@ -6,7 +6,7 @@ import '../../public/services/api.js';
 import { jsonBinAPI } from '../../public/services/api';
 import './accommodations.css';
 
-type ApiHotel = any; // tipagem relaxada para aceitar seu JSON sem erro
+type ApiHotel = any;
 type Hotel = {
   id: number | string;
   name: string;
@@ -17,6 +17,7 @@ type Hotel = {
   reviews: number;
   perks: string[];
   image: string;
+  avaliationAmount: number;
 };
 
 export default function Accommodations() {
@@ -33,15 +34,18 @@ export default function Accommodations() {
         setError(null);
 
         const data = await jsonBinAPI.fetchPropertyData();
-        // seu JSON tem um array "hotels"
+        
         const arr: ApiHotel[] = data?.hotels ?? [];
 
-        // mapeia do formato da API para o formato usado no componente
         const normalized: Hotel[] = arr.map((h: ApiHotel) => {
           const address = h.address ?? {};
+          const str = address.street || '';
+          const num = address.number || '';
           const neigh = address.neighboorhood || address.neighborhood || '';
           const city = address.city || '';
-          const locationStr = [neigh, city].filter(Boolean).join(', ') || h.address?.street || 'Local não informado';
+          const uf = address.UF || '';
+          const ctr = address.country || '';
+          const locationStr = [str, num, neigh, city, uf, ctr].filter(Boolean).join(', ') || h.address?.street || 'Local não informado';
 
           const priceAmount = (h.price && h.price.amount) ? Number(h.price.amount) : (h.price?.amount ? Number(h.price.amount) : 0);
           const rating = h.review?.rating ? parseFloat(String(h.review.rating)) : (h.review?.rating ? Number(h.review.rating) : 0);
@@ -52,10 +56,11 @@ export default function Accommodations() {
             name: h.name ?? 'Nome não informado',
             location: locationStr,
             price: priceAmount,
-            oldPrice: null, // seu JSON não traz oldPrice; mantive null (pode ajustar se houver campo)
+            oldPrice: null,
             rating: Number.isNaN(rating) ? 0 : rating,
             reviews: typeof h.reviews === 'number' ? h.reviews : 0,
             perks: Array.isArray(h.amenities) ? h.amenities : [],
+            avaliationAmount: Number(h.avaliationAmount) || 0,            
             image,
           } as Hotel;
         });
@@ -120,9 +125,12 @@ export default function Accommodations() {
 
           {!loading && !error && hotels.map((hotel) => (
             <div key={hotel.id} className="hotel-card">
-              <Link href={`/details/${hotel.id}`}>
-                <img src={hotel.image} alt={hotel.name} />
-              </Link>
+              <div className="img-content">
+                <Link href={`/details/${hotel.id}`}>
+                  <img src={hotel.image} alt={hotel.name} />
+                </Link>
+              </div>
+
               <div className="hotel-info">
                 <h3>{hotel.name}</h3>
 
@@ -137,15 +145,23 @@ export default function Accommodations() {
                 <div className="hotel-footer">
                   <div>
                     <span className="rating"><span className='rating-decimal'>{hotel.rating}</span> {hotel.rating >= 9 ? 'Excelente' : hotel.rating >= 8 ? 'Muito bom' : 'Bom'}</span>
-                    <p className="reviews">{hotel.reviews} avaliações</p>
+                    <p className="reviews">{hotel.avaliationAmount} avaliações</p>
                   </div>
 
                   <div className="price">
                     {hotel.oldPrice && (
-                      <p className="old-price">R$ {hotel.oldPrice}</p>
+                      <p className="old-price">{hotel.oldPrice.toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                        minimumFractionDigits: 2,
+                      })}</p>
                     )}
 
-                    <p className="new-price">R$ {hotel.price}</p>
+                    <p className="new-price">{hotel.price.toLocaleString('pt-BR', {
+                      style: 'currency',
+                      currency: 'BRL',
+                      minimumFractionDigits: 2,
+                    })}</p>
 
                     <Link href={`/details/${hotel.id}`}>
                       <button className='btn-book'>Reservar</button>
