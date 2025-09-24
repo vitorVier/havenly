@@ -1,16 +1,16 @@
-import './details.css';
+import '../details.css';
 import Image from 'next/image';
 
-import locIcon from '../../public/images/icons/locIcon.png';
-import calendarIcon from '../../public/images/icons/calendarIcon.png';
-import userIcon from '../../public/images/icons/userIcon.png';
-import shareIcon from '../../public/images/icons/shareIcon.png';
-import loveIcon from '../../public/images/icons/loveIcon.png';
-import terraceIcon from '../../public/images/icons/terraceIcon.png';
-import gardenIcon from '../../public/images/icons/gardenIcon.png';
-import garageIcon from '../../public/images/icons/garageIcon.png';
-import elevatorIcon from '../../public/images/icons/elevatorIcon.png';
-import wifiIcon from '../../public/images/icons/wifiIcon.png';
+import locIcon from '../../../public/images/icons/locIcon.png';
+import calendarIcon from '../../../public/images/icons/calendarIcon.png';
+import userIcon from '../../../public/images/icons/userIcon.png';
+import shareIcon from '../../../public/images/icons/shareIcon.png';
+import loveIcon from '../../../public/images/icons/loveIcon.png';
+import terraceIcon from '../../../public/images/icons/terraceIcon.png';
+import gardenIcon from '../../../public/images/icons/gardenIcon.png';
+import garageIcon from '../../../public/images/icons/garageIcon.png';
+import elevatorIcon from '../../../public/images/icons/elevatorIcon.png';
+import wifiIcon from '../../../public/images/icons/wifiIcon.png';
 
 export default function Details() {
   return (

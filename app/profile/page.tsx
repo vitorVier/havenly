@@ -10,7 +10,7 @@ export default function ProfilePage() {
     <main className="profile-container">
       <nav className="profile-tabs">
         <Link href="/profile">
-          <span className="tab active">Segurança</span>
+          <span className="tab active">Meu Perfil</span>
         </Link>
 
         <Link href="/security">

@@ -74,8 +74,7 @@ export default function Reservations() {
                   />
                 </button>
 
-                {/* <Link href={`/details/${res.id}`}> */}
-                <Link href='/details'>
+                <Link href={`/details/${res.id}`}>
                   <button className="reservation-details-btn">
                     Detalhes
                   </button>
