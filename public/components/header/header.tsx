@@ -51,6 +51,7 @@ export function Header() {
                         <option value="2">SPN</option>
                     </select>
                     
+                    <Link href="/accommodations">Hoteis</Link>
                     <Link href="/reservations">Minhas Reservas</Link>
                     <Link href="/profile">Minha Conta</Link>
                     <Link href="/support">Suporte</Link>
@@ -71,9 +72,12 @@ export function Header() {
                         <option value="1">ENG</option>
                         <option value="2">SPN</option>
                     </select>
+
+                    <Link href="/accommodations">Hoteis</Link>
                     <Link href="/reservations">Minhas Reservas</Link>
                     <Link href="/profile">Minha Conta</Link>
                     <Link href="/support">Suporte</Link>
+                    
                     <div className="buttons">
                         <Link href="/login">
                             <button>Entrar</button>

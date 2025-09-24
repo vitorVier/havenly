@@ -47,13 +47,13 @@ export default function Accommodations() {
         <button className="search-btn">Buscar</button>
       </section>
 
-      {/* Conteúdo */}
       <main className="content">
         {/* Filtros */}
         <aside className="filters">
           <h2>Filtrar por</h2>
           <label><input type="checkbox" /> Café da manhã incluso</label>
           <label><input type="checkbox" /> Piscina</label>
+          <label><input type="checkbox" /> Garagem</label>
           <label><input type="checkbox" /> Banheira de hidromassagem</label>
 
           <div className="filter-price">
