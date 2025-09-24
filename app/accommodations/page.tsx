@@ -68,7 +68,9 @@ export default function Accommodations() {
         <section className="hotels">
           {hotels.map((hotel) => (
             <div key={hotel.id} className="hotel-card">
-              <img src={hotel.image} alt={hotel.name} />
+              <Link href={`/details/${hotel.id}`}>
+                <img src={hotel.image} alt={hotel.name} />
+              </Link>
               <div className="hotel-info">
                 <h3>{hotel.name}</h3>
 
