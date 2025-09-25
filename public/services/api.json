@@ -12,7 +12,7 @@
         "country": "Brasil"
       },
       "location": { "lat": -23.0123, "lon": -43.1234 },
-      "amenities": ["praia", "piscina", "wifi"],
+      "amenities": ["Wifi", "Praia", "Piscina", "Garagem", "Terraço"],
       "price": { "amount": 1200.00, "currency": "BRL" },
       "images": [
         "https://cf.bstatic.com/xdata/images/hotel/max1024x768/575182806.jpg?k=6c48841e703049d03954e410e1df10ed4f4a2d449ba592ed087077843e1ebbaa&o=",
@@ -194,7 +194,7 @@
         "country": "Brasil"
       },
       "location": { "lat": -23.0123, "lon": -43.1234 },
-      "amenities": ["praia", "piscina", "wifi"],
+      "amenities": ["Wifi", "Praia", "Piscina", "Garagem", "Terraço"],
       "price": { "amount": 400.00, "currency": "BRL" },
       "images": [
         "https://cf.bstatic.com/xdata/images/hotel/max1024x768/259429019.jpg?k=dc953aaa9e935b963031517fbbb89fb2ad6b67a4086fac658425b9ce5f4848e0&o=",

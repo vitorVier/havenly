@@ -6,6 +6,14 @@ import type { Hotel } from '../../../public/types/hotel';
 import type { ApiHotel } from '@/app/accommodations/page';
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
+import { 
+  FaUmbrellaBeach,
+  FaWifi,
+  FaBuilding
+} from "react-icons/fa6";
+import { MdPool } from "react-icons/md";
+import { BiSolidCarGarage } from "react-icons/bi";
+import { ReactNode } from "react";
 
 export default function Details() {
   const params = useParams(); // pegar id do Next.js App Router
@@ -14,6 +22,14 @@ export default function Details() {
   const [hotel, setHotel] = useState<Hotel | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  const perkIcons: Record<string, ReactNode> = {
+    "Wifi": <FaWifi />,
+    "Praia": <FaUmbrellaBeach />,
+    "Piscina": <MdPool />,
+    "Garagem": <BiSolidCarGarage />,
+    "Terraço": <FaBuilding />
+  };
 
   useEffect(() => {
     if (!id) return;
@@ -142,38 +158,61 @@ export default function Details() {
               </div>
 
               <div className="details-description">
-                <p style={{ fontWeight: 'bold' }}>
+                <p style={{ fontWeight: 'bold', fontSize: 20 }}>
                   {hotel.slogan}.
                 </p>
-                <p style={{ color: '#888', marginTop: '5px', marginBottom: '15px', lineHeight: "25px"}}>
+
+                <p style={{ color: '#888', marginTop: '15px', marginBottom: '20px', lineHeight: "22px"}}>
                   {hotel.description}
                 </p>
+
                 <span className="details-description-label">Dados confiáveis:</span>
+                
                 <p style={{ color: '#888', marginTop: '5px' }}>
                   Os hóspedes dizem que a descrição e as fotos desta acomodação são muito precisas.
                 </p>
+
                 <button className="details-description-btn">Ver mais</button>
               </div>
             </section>
           </div>
 
           <div className="details-features">
-            {hotel.perks.map((perk, i) => (
-              <div className="details-feature" key={i}>
-                {perk}
-              </div>
-            ))}
+            {hotel.perks.map((perk, i) => {
+              const icon = perkIcons[perk] ?? null;
+              return (
+                <div className="details-feature" key={i}>
+                  {icon && <span className="perk-icon">{icon}</span>}
+                  <span>{perk}</span>
+                </div>
+              )
+            })}
           </div>
 
           <div className="details-rating">
             <div className="details-rating-header">
               <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
                 <span className="details-rating-title">
-                  {hotel.rating >= 9 ? 'Excelente' : hotel.rating >= 8 ? 'Muito bom' : 'Bom'}
+                  {hotel.rating >= 9 ? 'Excelente' : hotel.rating >= 8 ? 'Muito bom' : hotel.rating >= 6.5 ? 'Bom' : 'Médio'}
                 </span>
                 <div className="details-rating-sub">{hotel.avaliationAmount} Avaliações</div>
               </div>
               <span className="details-rating-score">{hotel.rating.toFixed(1)}</span>
+            </div>
+
+            <span className='divisor'></span>
+
+            <div>
+              <span style={{fontWeight: 'bold', fontSize: 16}}>O que os hópedes falam sobre esta acomodação?</span>
+
+              <p className='comment'>Ótima localização, perto de supermercados e paradas de ônibus e metrô</p>
+              <h4 className='author'>Anna Eich</h4>
+
+              <p className='comment'>As instalações são bonitas, joviais e apresentam uma imagem positiva de consciência ambiental e social. A segurança no acesso e dentro do prédio são também muito efetivas!</p>
+              <h4 className='author'>Darles Thume</h4>
+
+              <p className='comment'>Ambiente super calmo e tranquilo. Ótima localização, próximo à shoppings! Comodidade excelente! Gostei demais!!</p>
+              <h4 className='author'>Julia Rafaela</h4>
             </div>
           </div>
         </div>
