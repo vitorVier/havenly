@@ -6,19 +6,9 @@ import '../../public/services/api.js';
 import { jsonBinAPI } from '../../public/services/api';
 import './accommodations.css';
 
-type ApiHotel = any;
-type Hotel = {
-  id: number | string;
-  name: string;
-  location: string;
-  price: number;
-  oldPrice?: number | null;
-  rating: number;
-  reviews: number;
-  perks: string[];
-  image: string;
-  avaliationAmount: number;
-};
+import type { Hotel } from '../../public/types/hotel.ts';
+
+export type ApiHotel = any;
 
 export default function Accommodations() {
   const [hotels, setHotels] = useState<Hotel[]>([]);
@@ -55,6 +45,7 @@ export default function Accommodations() {
             id: h.id ?? Math.random().toString(36).slice(2, 9),
             name: h.name ?? 'Nome não informado',
             location: locationStr,
+            address: [str, num, neigh, city, uf, ctr].filter(Boolean),
             price: priceAmount,
             oldPrice: null,
             rating: Number.isNaN(rating) ? 0 : rating,

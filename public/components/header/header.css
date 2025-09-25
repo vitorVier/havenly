@@ -136,7 +136,7 @@ nav a:hover {
 }
 
 /* Responsive styles */
-@media (max-width: 920px) {
+@media (max-width: 973px) {
     .header-content {
         flex-direction: row;
         justify-content: space-between;

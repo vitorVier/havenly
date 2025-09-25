@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: ['cf.bstatic.com', 'picsum.photos'], // adicione todos os domínios externos que você usar
+  },
 };
 
 export default nextConfig;

@@ -263,7 +263,7 @@ hr {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 973px) {
   .details-content {
     padding: 12px 2vw 32px 2vw;
   }
