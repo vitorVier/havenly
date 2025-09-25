@@ -1,6 +1,7 @@
 'use client';
 import '../details.css';
 import Image from 'next/image';
+import { toast } from 'react-toastify';
 import { jsonBinAPI } from '../../../public/services/api';
 import type { Hotel } from '../../../public/types/hotel';
 import type { ApiHotel } from '@/app/accommodations/page';
@@ -95,6 +96,25 @@ export default function Details() {
   if (error) return <p className="error">{error}</p>;
   if (!hotel) return <p>Hotel não encontrado.</p>;
 
+
+  // Salvar hotel nas reservas
+  function handleBookHotel() {
+    const myList = localStorage.getItem('@havenly');
+    let savedHotels = myList ? JSON.parse(myList) : [];
+
+    // Verifica se o hotel já está salvo
+    const hasFilme = savedHotels.some((savedHotel: any) => savedHotel.id === hotel?.id);
+
+    if (hasFilme) {
+      toast.warn('Você já realizou a reserva deste hotel!');
+      return;
+    }
+
+    savedHotels.push(hotel);
+    localStorage.setItem('@havenly', JSON.stringify(savedHotels));
+    toast.success('Reserva feita com sucesso!');
+  }
+
   return (
     <div className="details-content">
       <div className="details-filters">
@@ -172,7 +192,12 @@ export default function Details() {
                   Os hóspedes dizem que a descrição e as fotos desta acomodação são muito precisas.
                 </p>
 
-                <button className="details-description-btn">Ver mais</button>
+                <button
+                  onClick={handleBookHotel}
+                  className="details-description-btn"
+                >
+                  Reservar
+                </button>
               </div>
             </section>
           </div>

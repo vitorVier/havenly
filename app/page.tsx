@@ -70,7 +70,7 @@ export default function Home() {
             </li>
           </ul>
 
-          <Link href="/">
+          <Link href="accommodations">
             <button className='search'>
               BUSCAR HOSPEDAGEM
             </button>
