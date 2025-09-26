@@ -144,8 +144,8 @@ export default function Details() {
         <div className="details-header">
           <h1>{hotel.name}</h1>
           <div className="details-header-actions">
-            <Image src="/images/icons/loveIcon.png" alt="Favoritar" width={24} height={24} />
-            <Image src="/images/icons/shareIcon.png" alt="Compartilhar" width={24} height={24} />
+            <Image src="/images/icons/loveIcon.png" alt="Favoritar" width={24} height={24} style={{cursor: "pointer"}} />
+            <Image src="/images/icons/shareIcon.png" alt="Compartilhar" width={24} height={24} style={{cursor: "pointer"}} />
           </div>
         </div>
 
@@ -231,13 +231,13 @@ export default function Details() {
               <span style={{fontWeight: 'bold', fontSize: 16}}>O que os hópedes falam sobre esta acomodação?</span>
 
               <p className='comment'>Ótima localização, perto de supermercados e paradas de ônibus e metrô</p>
-              <h4 className='author'>Anna Eich</h4>
+              <span className='comment-author'>Anna Eich</span>
 
               <p className='comment'>As instalações são bonitas, joviais e apresentam uma imagem positiva de consciência ambiental e social. A segurança no acesso e dentro do prédio são também muito efetivas!</p>
-              <h4 className='author'>Darles Thume</h4>
+              <span className='comment-author'>Darles Thume</span>
 
               <p className='comment'>Ambiente super calmo e tranquilo. Ótima localização, próximo à shoppings! Comodidade excelente! Gostei demais!!</p>
-              <h4 className='author'>Julia Rafaela</h4>
+              <span className='comment-author'>Julia Rafaela</span>
             </div>
           </div>
         </div>
