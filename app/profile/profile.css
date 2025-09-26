@@ -54,7 +54,27 @@
   justify-content: center;
   border-radius: 50%;
   cursor: pointer;
+  /* overflow: hidden; */
   background: #D8D8D8;
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 999;
+}
+
+.remove-photo {
+  margin-top: 10px;
+  border: none;
+  color: #fff;
+  background-color: #F75C4C;
+}
+
+.remove-photo:hover {
+  background-color: #c0433f;
 }
 
 .eng-icon {
@@ -62,6 +82,7 @@
   bottom: 10px;
   right: 8px;
   cursor: pointer;
+  z-index: 10;
 }
 
 .profile-info-section {

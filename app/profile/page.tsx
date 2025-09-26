@@ -1,3 +1,5 @@
+'use client'
+import { useEffect, useState } from 'react';
 import './profile.css';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -6,6 +8,26 @@ import userProfileIcon from '../../public/images/icons/userProfileIcon.png';
 import engIcon from '../../public/images/icons/engIcon.png';
 
 export default function ProfilePage() {
+
+  const [profileImage, setProfileImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    const savedImage = localStorage.getItem('profileImage');
+    if (savedImage) setProfileImage(savedImage);
+  }, []);
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const result = e.target?.result as string;
+        setProfileImage(result);
+        localStorage.setItem('profileImage', result);
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  };
+
   return (
     <main className="profile-container">
       <nav className="profile-tabs">
@@ -23,22 +45,52 @@ export default function ProfilePage() {
           <span className="profile-photo-label">Foto de Perfil</span>
 
           <div className="profile-photo">
-            <Image
-              src={userProfileIcon}
-              alt="User Profile Icon"
-              width={100}
-              height={100}
-            />
+            {profileImage ? (
+              <img
+                src={profileImage}
+                alt="User Profile"
+                className="profileImage"
+              />
+            ) : (
+              <img
+                src={userProfileIcon.src}
+                alt="User Icon"
+                className="profileIcon"
+              />
+            )}
 
-            <Image
-              src={engIcon}
-              alt="Edit Icon"
-              width={40}
-              height={40}
-              className="eng-icon"
+            {!profileImage && (
+              <label htmlFor="profile-upload" className="eng-icon-label">
+                <Image
+                  src={engIcon}
+                  alt="Edit Icon"
+                  width={40}
+                  height={40}
+                  className="eng-icon"
+                />
+              </label>
+            )}
+
+            <input
+              type="file"
+              id="profile-upload"
+              accept="image/*"
+              style={{ position: "absolute", width: 200, height: 200 , borderRadius: '50%', opacity: 0, cursor: "pointer"}}
+              onChange={handleImageChange}
             />
           </div>
 
+          {profileImage && (
+            <button
+              className="btn remove-photo"
+              onClick={() => {
+                setProfileImage(null);
+                localStorage.removeItem('profileImage');
+              }}
+            >
+              Remover Foto
+            </button>
+          )}
         </section>
 
         <section className="profile-info-section">
