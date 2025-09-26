@@ -12,8 +12,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  width: 90%;
-  margin-top: 20px;
+  width: 50%;
+  margin: 20px 0 0 0;
   padding: 1rem 2rem;
   border-radius: 7px;
   background: #fff;
@@ -76,14 +76,31 @@
 }
 
 .filters label {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 3px;
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
 }
 
 .filter-price {
-  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 75%;
+  margin: 1rem 0 0.5rem;
   font-size: 0.9rem;
+}
+
+.filter-price input[type="range"] {
+  width: 100%;
+  cursor: pointer;
+}
+
+.price-output {
+  font-weight: bold;
+  color: var(--primary-color);
+  font-size: 1rem;
 }
 
 /* Cards */
@@ -192,4 +209,109 @@
 
 .btn-book:hover, .btn-filter:hover {
   transform: scale(1.05);
+}
+
+
+/* Telas grandes (1440px+) */
+@media (min-width: 1440px) {
+  .content {
+    width: 85%;
+    grid-template-columns: 300px 1fr;
+  }
+
+  .hotel-card .img-content {
+    width: 250px;
+  }
+}
+
+/* Telas médias (tablets landscape, 1024px–1439px) */
+@media (max-width: 1439px) {
+  .content {
+    grid-template-columns: 220px 1fr;
+  }
+
+  .hotel-card img {
+    width: 200px;
+  }
+}
+
+/* Tablets (768px–1023px) */
+@media (max-width: 1023px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    order: -1;
+    max-height: none;
+    margin-bottom: 1rem;
+  }
+
+  .hotel-card {
+    flex-direction: column;
+  }
+
+  .hotel-card img {
+    width: 100%;
+    height: 205px;
+  }
+}
+
+/* Smartphones grandes (600px–767px) */
+@media (max-width: 767px) {
+  .search-bar {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .hotel-info h3 {
+    font-size: 1rem;
+  }
+
+  .new-price {
+    font-size: 1rem;
+  }
+}
+
+/* Smartphones médios (480px–599px) */
+@media (max-width: 599px) {
+  .content {
+    padding: 1rem;
+  }
+
+  .hotel-card img {
+    height: 180px;
+  }
+
+  .hotel-info {
+    padding: 0.75rem;
+  }
+
+  .search-btn {
+    width: 100%;
+  }
+}
+
+/* Smartphones pequenos (até 479px) */
+@media (max-width: 479px) {
+  .filters h2 {
+    font-size: 1rem;
+  }
+
+  .filters label {
+    font-size: 0.8rem;
+  }
+
+  .hotel-info h3 {
+    font-size: 0.95rem;
+  }
+
+  .perks {
+    font-size: 0.75rem;
+  }
+
+  .new-price {
+    font-size: 0.95rem;
+  }
 }

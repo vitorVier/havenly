@@ -15,6 +15,8 @@ export default function Accommodations() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  const [price, setPrice] = useState(1000);
+
   useEffect(() => {
     let mounted = true;
 
@@ -99,7 +101,18 @@ export default function Accommodations() {
 
           <div className="filter-price">
             <span>Preço por diária</span>
-            <input type="range" min="0" max="2400" />
+            <input 
+              type="range" 
+              min="0" 
+              max="2400" 
+              id="price" 
+              step="100" 
+              onInput={(e) => setPrice(Number((e.target as HTMLInputElement).value))}
+            />
+            <span className="price-output">Até {price.toLocaleString("pt-br", {
+              style: "currency",
+              currency: "BRL"
+            })}</span>
           </div>
 
           <button className='btn-filter'>Filtrar</button>
