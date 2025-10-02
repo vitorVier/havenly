@@ -32,41 +32,9 @@ export default function Accommodations() {
         setLoading(true);
         setError(null);
 
-        const data = await jsonBinAPI.fetchPropertyData();
-        
-        const arr: ApiHotel[] = data?.hotels ?? [];
-
-        const normalized: Hotel[] = arr.map((h: ApiHotel) => {
-          const address = h.address ?? {};
-          const str = address.street || '';
-          const num = address.number || '';
-          const neigh = address.neighboorhood || address.neighborhood || '';
-          const city = address.city || '';
-          const uf = address.UF || '';
-          const ctr = address.country || '';
-          const locationStr = [str, num, neigh, city, uf, ctr].filter(Boolean).join(', ') || h.address?.street || 'Local não informado';
-
-          const priceAmount = (h.price && h.price.amount) ? Number(h.price.amount) : (h.price?.amount ? Number(h.price.amount) : 0);
-          const rating = h.review?.rating ? parseFloat(String(h.review.rating)) : (h.review?.rating ? Number(h.review.rating) : 0);
-          const image = Array.isArray(h.images) && h.images.length > 0 ? h.images[0] : `https://picsum.photos/seed/hotel${h.id}/600/400`;
-
-          return {
-            id: h.id ?? Math.random().toString(36).slice(2, 9),
-            name: h.name ?? 'Nome não informado',
-            location: locationStr,
-            address: [str, num, neigh, city, uf, ctr].filter(Boolean),
-            price: priceAmount,
-            oldPrice: null,
-            rating: Number.isNaN(rating) ? 0 : rating,
-            reviews: typeof h.reviews === 'number' ? h.reviews : 0,
-            perks: Array.isArray(h.amenities) ? h.amenities : [],
-            avaliationAmount: Number(h.avaliationAmount) || 0,            
-            image,
-          } as Hotel;
-        });
-
-        if (mounted) setHotels(normalized);
-      } catch (err: any) {
+        const hotels = await fetchHotels();
+        if (mounted) setHotels(hotels);
+      } catch (err) {
         console.error('Erro ao carregar hotéis:', err);
         if (mounted) setError('Falha ao buscar hotéis.');
       } finally {
@@ -75,9 +43,49 @@ export default function Accommodations() {
     }
 
     loadHotels();
-
     return () => { mounted = false; };
   }, []);
+
+  function normalizeHotels(arr: ApiHotel[]): Hotel[] {
+    return arr.map((h: ApiHotel) => {
+      const address = h.address ?? {};
+      const str = address.street || '';
+      const num = address.number || '';
+      const neigh = address.neighboorhood || address.neighborhood || '';
+      const city = address.city || '';
+      const uf = address.UF || '';
+      const ctr = address.country || '';
+      const locationStr = [str, num, neigh, city, uf, ctr]
+        .filter(Boolean)
+        .join(', ') || h.address?.street || 'Local não informado';
+
+      const priceAmount = h.price?.amount ? Number(h.price.amount) : 0;
+      const rating = h.review?.rating ? parseFloat(String(h.review.rating)) : 0;
+      const image = Array.isArray(h.images) && h.images.length > 0 
+        ? h.images[0] 
+        : `https://picsum.photos/seed/hotel${h.id}/600/400`;
+
+      return {
+        id: h.id ?? Math.random().toString(36).slice(2, 9),
+        name: h.name ?? 'Nome não informado',
+        location: locationStr,
+        address: [str, num, neigh, city, uf, ctr].filter(Boolean),
+        price: priceAmount,
+        oldPrice: null,
+        rating: Number.isNaN(rating) ? 0 : rating,
+        reviews: typeof h.reviews === 'number' ? h.reviews : 0,
+        perks: Array.isArray(h.amenities) ? h.amenities : [],
+        avaliationAmount: Number(h.avaliationAmount) || 0,            
+        image,
+      } as Hotel;
+    });
+  }
+
+  async function fetchHotels(): Promise<Hotel[]> {
+    const data = await jsonBinAPI.fetchPropertyData();
+    const arr: ApiHotel[] = data?.hotels ?? [];
+    return normalizeHotels(arr);
+  }
 
   async function filterHotels() {
     let mounted = true;
@@ -86,39 +94,9 @@ export default function Accommodations() {
       setLoading(true);
       setError(null);
 
-      const data = await jsonBinAPI.fetchPropertyData();    
-      const arr: ApiHotel[] = data?.hotels ?? [];
+      let hotels = await fetchHotels();
 
-      const normalized: Hotel[] = arr.map((h: ApiHotel) => {
-        const address = h.address ?? {};
-        const str = address.street || '';
-        const num = address.number || '';
-        const neigh = address.neighboorhood || address.neighborhood || '';
-        const city = address.city || '';
-        const uf = address.UF || '';
-        const ctr = address.country || '';
-        const locationStr = [str, num, neigh, city, uf, ctr].filter(Boolean).join(', ') || h.address?.street || 'Local não informado';
-
-        const priceAmount = h.price?.amount ? Number(h.price.amount) : 0;
-        const rating = h.review?.rating ? parseFloat(String(h.review.rating)) : 0;
-        const image = Array.isArray(h.images) && h.images.length > 0 ? h.images[0] : `https://picsum.photos/seed/hotel${h.id}/600/400`;
-
-        return {
-          id: h.id ?? Math.random().toString(36).slice(2, 9),
-          name: h.name ?? 'Nome não informado',
-          location: locationStr,
-          address: [str, num, neigh, city, uf, ctr].filter(Boolean),
-          price: priceAmount,
-          oldPrice: null,
-          rating: Number.isNaN(rating) ? 0 : rating,
-          reviews: typeof h.reviews === 'number' ? h.reviews : 0,
-          perks: Array.isArray(h.amenities) ? h.amenities : [],
-          avaliationAmount: Number(h.avaliationAmount) || 0,            
-          image,
-        } as Hotel;
-      });
-
-      let filtered = normalized.filter((hotel) => {
+      hotels = hotels.filter((hotel) => {
         if (hotel.price > price) return false;
 
         if (filters.cafe && !hotel.perks.some(p => p.toLowerCase().includes("cafe"))) return false;
@@ -130,16 +108,16 @@ export default function Accommodations() {
         return true;
       });
 
-      if (mounted) setHotels(filtered);
+      if (mounted) setHotels(hotels);
 
-    } catch (err: any) {
+    } catch (err) {
       console.error('Erro ao carregar hotéis:', err);
       if (mounted) setError('Falha ao buscar hotéis.');
     } finally {
       if (mounted) setLoading(false);
     }
   }
-
+  
   return (
     <div className="accommodations-container">
       {/* Barra de pesquisa */}
