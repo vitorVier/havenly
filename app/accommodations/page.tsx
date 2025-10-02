@@ -14,7 +14,8 @@ export default function Accommodations() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const [price, setPrice] = useState(1000);
+  const [town, setTown] = useState("");
+  const [price, setPrice] = useState(2000);
 
   const [filters, setFilters] = useState({
     cafe: false,
@@ -87,6 +88,13 @@ export default function Accommodations() {
     return normalizeHotels(arr);
   }
 
+  function normalizeText(text: string): string {
+    return text
+      .normalize("NFD") // separa caracteres de acentos
+      .replace(/[\u0300-\u036f]/g, "") // remove acentos
+      .toLowerCase();
+  }
+
   async function filterHotels() {
     let mounted = true;
 
@@ -97,8 +105,24 @@ export default function Accommodations() {
       let hotels = await fetchHotels();
 
       hotels = hotels.filter((hotel) => {
+
+        // Filtra Cidade/Destino
+        const normalizedTown = normalizeText(town);
+
+        const matchAddress = hotel.address.some((a) =>
+          normalizeText(a).includes(normalizedTown)
+        );
+
+        const matchLocation = normalizeText(hotel.location).includes(normalizedTown);
+
+        if (town.trim() && !matchAddress && !matchLocation) {
+          return false;
+        }
+
+        // Filtra Preço
         if (hotel.price > price) return false;
 
+        // Filtra Perks
         if (filters.cafe && !hotel.perks.some(p => p.toLowerCase().includes("cafe"))) return false;
         if (filters.praia && !hotel.perks.some(p => p.toLowerCase().includes("praia"))) return false;
         if (filters.piscina && !hotel.perks.some(p => p.toLowerCase().includes("piscina"))) return false;
@@ -117,23 +141,31 @@ export default function Accommodations() {
       if (mounted) setLoading(false);
     }
   }
-  
+
   return (
     <div className="accommodations-container">
       {/* Barra de pesquisa */}
       <section className="search-bar">
         <div className="search-input">
-          <input type="text" placeholder="Destino" />
+          <input 
+            type="text"
+            placeholder="Destino"
+            value={town}
+            onChange={(e) => setTown(e.target.value)}
+          />
         </div>
+
         <div className="search-input">
           <input type="date" />
           <span>-</span>
           <input type="date" />
         </div>
+
         <div className="search-input">
           <input type="text" placeholder="2 hóspedes, 1 quarto" />
         </div>
-        <button className="search-btn">Buscar</button>
+
+        <button className="search-btn" onClick={filterHotels}>Buscar</button>
       </section>
 
       <main className="content">
