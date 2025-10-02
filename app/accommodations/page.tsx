@@ -1,4 +1,3 @@
-// app/accommodations/page.tsx
 'use client'
 import React, { useEffect, useState } from "react";
 import Link from 'next/link';
@@ -16,6 +15,14 @@ export default function Accommodations() {
   const [error, setError] = useState<string | null>(null);
 
   const [price, setPrice] = useState(1000);
+
+  const [filters, setFilters] = useState({
+    cafe: false,
+    praia: false,
+    piscina: false,
+    garagem: false,
+    banheira: false,
+  });
 
   useEffect(() => {
     let mounted = true;
@@ -61,7 +68,7 @@ export default function Accommodations() {
         if (mounted) setHotels(normalized);
       } catch (err: any) {
         console.error('Erro ao carregar hotéis:', err);
-        if (mounted) setError('Falha ao buscar hotéis. Verifique a API.');
+        if (mounted) setError('Falha ao buscar hotéis.');
       } finally {
         if (mounted) setLoading(false);
       }
@@ -71,6 +78,67 @@ export default function Accommodations() {
 
     return () => { mounted = false; };
   }, []);
+
+  async function filterHotels() {
+    let mounted = true;
+
+    try {
+      setLoading(true);
+      setError(null);
+
+      const data = await jsonBinAPI.fetchPropertyData();    
+      const arr: ApiHotel[] = data?.hotels ?? [];
+
+      const normalized: Hotel[] = arr.map((h: ApiHotel) => {
+        const address = h.address ?? {};
+        const str = address.street || '';
+        const num = address.number || '';
+        const neigh = address.neighboorhood || address.neighborhood || '';
+        const city = address.city || '';
+        const uf = address.UF || '';
+        const ctr = address.country || '';
+        const locationStr = [str, num, neigh, city, uf, ctr].filter(Boolean).join(', ') || h.address?.street || 'Local não informado';
+
+        const priceAmount = h.price?.amount ? Number(h.price.amount) : 0;
+        const rating = h.review?.rating ? parseFloat(String(h.review.rating)) : 0;
+        const image = Array.isArray(h.images) && h.images.length > 0 ? h.images[0] : `https://picsum.photos/seed/hotel${h.id}/600/400`;
+
+        return {
+          id: h.id ?? Math.random().toString(36).slice(2, 9),
+          name: h.name ?? 'Nome não informado',
+          location: locationStr,
+          address: [str, num, neigh, city, uf, ctr].filter(Boolean),
+          price: priceAmount,
+          oldPrice: null,
+          rating: Number.isNaN(rating) ? 0 : rating,
+          reviews: typeof h.reviews === 'number' ? h.reviews : 0,
+          perks: Array.isArray(h.amenities) ? h.amenities : [],
+          avaliationAmount: Number(h.avaliationAmount) || 0,            
+          image,
+        } as Hotel;
+      });
+
+      let filtered = normalized.filter((hotel) => {
+        if (hotel.price > price) return false;
+
+        if (filters.cafe && !hotel.perks.some(p => p.toLowerCase().includes("cafe"))) return false;
+        if (filters.praia && !hotel.perks.some(p => p.toLowerCase().includes("praia"))) return false;
+        if (filters.piscina && !hotel.perks.some(p => p.toLowerCase().includes("piscina"))) return false;
+        if (filters.garagem && !hotel.perks.some(p => p.toLowerCase().includes("garagem"))) return false;
+        if (filters.banheira && !hotel.perks.some(p => p.toLowerCase().includes("banheira"))) return false;
+
+        return true;
+      });
+
+      if (mounted) setHotels(filtered);
+
+    } catch (err: any) {
+      console.error('Erro ao carregar hotéis:', err);
+      if (mounted) setError('Falha ao buscar hotéis.');
+    } finally {
+      if (mounted) setLoading(false);
+    }
+  }
 
   return (
     <div className="accommodations-container">
@@ -94,10 +162,50 @@ export default function Accommodations() {
         {/* Filtros */}
         <aside className="filters">
           <h2>Filtrar por</h2>
-          <label><input type="checkbox" /> Café da manhã incluso</label>
-          <label><input type="checkbox" /> Piscina</label>
-          <label><input type="checkbox" /> Garagem</label>
-          <label><input type="checkbox" /> Banheira de hidromassagem</label>
+          <label>
+            <input 
+              type="checkbox" 
+              checked={filters.cafe} 
+              onChange={(e) => setFilters({...filters, cafe: e.target.checked})} 
+            /> 
+            Café da manhã incluso
+          </label>
+
+          <label>
+            <input 
+              type="checkbox" 
+              checked={filters.praia} 
+              onChange={(e) => setFilters({...filters, praia: e.target.checked})} 
+            /> 
+            Próximo a praia
+          </label>
+
+          <label>
+            <input 
+              type="checkbox" 
+              checked={filters.piscina} 
+              onChange={(e) => setFilters({...filters, piscina: e.target.checked})} 
+            /> 
+            Piscina
+          </label>
+
+          <label>
+            <input 
+              type="checkbox" 
+              checked={filters.garagem} 
+              onChange={(e) => setFilters({...filters, garagem: e.target.checked})} 
+            /> 
+            Garagem
+          </label>
+          
+          <label>
+            <input 
+              type="checkbox" 
+              checked={filters.banheira} 
+              onChange={(e) => setFilters({...filters, banheira: e.target.checked})} 
+            /> 
+            Banheira de hidromassagem
+          </label>
 
           <div className="filter-price">
             <span>Preço por diária</span>
@@ -115,7 +223,7 @@ export default function Accommodations() {
             })}</span>
           </div>
 
-          <button className='btn-filter'>Filtrar</button>
+          <button className='btn-filter' onClick={filterHotels}>Filtrar</button>
         </aside>
 
         {/* Lista de hotéis */}
