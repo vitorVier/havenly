@@ -120,7 +120,9 @@ export default function Accommodations() {
 
         {/* Lista de hotéis */}
         <section className="hotels">
-          {loading && <p>Carregando acomodações...</p>}
+          <div className="loading">
+            {loading && <p>Carregando acomodações...</p>}
+          </div>
           {error && <p className="error">{error}</p>}
 
           {!loading && !error && hotels.length === 0 && (

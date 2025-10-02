@@ -211,6 +211,10 @@
   transform: scale(1.05);
 }
 
+.loading {
+  width: 100%;
+  text-align: center;
+}
 
 /* Telas grandes (1440px+) */
 @media (min-width: 1440px) {

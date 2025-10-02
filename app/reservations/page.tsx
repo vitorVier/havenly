@@ -36,7 +36,9 @@ export default function Reservations() {
       <h1 className="reservations-title">Minhas Reservas</h1>
 
       {hotels.length === 0 && (
-        <span>Você não possui nenhuma reserva.</span>
+        <div className='no-reserve'>
+          <span>Você não possui nenhuma reserva.</span>
+        </div>
       )}
 
       <div className="reservations-grid">
