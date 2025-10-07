@@ -10,10 +10,6 @@ import logoIcon from '../../../public/images/logo/logoIcon.png';
 export function Header() {
     const [navOpen, setNavOpen] = useState(false);
 
-    function closeNav() {
-        setNavOpen(false);
-    }
-
     return (
         <header>
             <div className="header-content">
@@ -55,17 +51,17 @@ export function Header() {
                         <option value="2">SPN</option>
                     </select>
                     
-                    <Link href="/accommodations">Hoteis</Link>
-                    <Link href="/reservations">Minhas Reservas</Link>
-                    <Link href="/profile">Minha Conta</Link>
-                    <Link href="/support">Suporte</Link>
+                    <Link href="/accommodations" onClick={() => setNavOpen(!navOpen)}>Hoteis</Link>
+                    <Link href="/reservations" onClick={() => setNavOpen(!navOpen)}>Minhas Reservas</Link>
+                    <Link href="/profile" onClick={() => setNavOpen(!navOpen)}>Minha Conta</Link>
+                    <Link href="/support" onClick={() => setNavOpen(!navOpen)}>Suporte</Link>
 
                     <div className="buttons">
                         <Link href="login">
-                            <button onClick={closeNav}>Entrar</button>
+                            <button onClick={() => setNavOpen(!navOpen)}>Entrar</button>
                         </Link>
                         <Link href="register">
-                            <button onClick={closeNav}>Cadastrar</button>
+                            <button onClick={() => setNavOpen(!navOpen)}>Cadastrar</button>
                         </Link>
                     </div>
                 </nav>
