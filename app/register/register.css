@@ -75,9 +75,13 @@
     cursor: pointer;
 }
 
-.toLogin:hover, .google-register:hover {
+.toLogin:hover {
     background: var(--contrast-secondary);
     color: var(--primary-color);
+}
+
+.google-register:hover {
+    filter: brightness(1.1);
 }
 
 .register-main {

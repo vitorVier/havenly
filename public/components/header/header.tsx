@@ -10,6 +10,10 @@ import logoIcon from '../../../public/images/logo/logoIcon.png';
 export function Header() {
     const [navOpen, setNavOpen] = useState(false);
 
+    function closeNav() {
+        setNavOpen(false);
+    }
+
     return (
         <header>
             <div className="header-content">
@@ -57,11 +61,11 @@ export function Header() {
                     <Link href="/support">Suporte</Link>
 
                     <div className="buttons">
-                        <Link href="#">
-                            <button>Entrar</button>
+                        <Link href="login">
+                            <button onClick={closeNav}>Entrar</button>
                         </Link>
-                        <Link href="#">
-                            <button>Cadastrar</button>
+                        <Link href="register">
+                            <button onClick={closeNav}>Cadastrar</button>
                         </Link>
                     </div>
                 </nav>
